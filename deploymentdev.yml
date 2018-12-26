@@ -18,18 +18,18 @@ spec:
         image: aranaivo/myphpapp
         command: ["/bin/sh", "-c", "echo ENV NAME: $(ENVNAME) LOGIN: $(LOGIN) PASSWORD: $(PWD)"]
         env:
-          - name: ENVNAME
-            valueFrom:
-              configMapKeyRef:
-                name: dev-env
-                key: envname
-           - name: LOGIN
-             valueFrom:
-               secretKeyRef:
-                 name: mysecret
-                 key: username
-           - name: PWD
-             valueFrom:
-               secretKeyRef:
-                 name: mysecret
-                 key: password
+        - name: ENVNAME
+          valueFrom:
+            configMapKeyRef:
+              name: dev-env
+              key: envname
+        - name: LOGIN
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: username
+        - name: PWD
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: password
