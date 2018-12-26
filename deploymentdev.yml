@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: myapp-dev
+  namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-app-dev
+  template:
+    metadata:
+      labels:
+        app: my-app-dev
+    spec:
+      containers:
+      - name: test-container
+        image: aranaivo/myphpapp
+        command: ["/bin/sh", "-c", "echo ENV NAME: $(ENVNAME) LOGIN: $(LOGIN) PASSWORD: $(PWD)"]
+        env:
+          - name: ENVNAME
+            valueFrom:
+              configMapKeyRef:
+                name: dev-env
+                key: envname
+           - name: LOGIN
+             valueFrom:
+               secretKeyRef:
+                 name: mysecret
+                 key: username
+           - name: PWD
+             valueFrom:
+               secretKeyRef:
+                 name: mysecret
+                 key: password
