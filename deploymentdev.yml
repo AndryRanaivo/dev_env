@@ -16,7 +16,7 @@ spec:
       containers:
       - name: test-container
         image: aranaivo/myphpapp
-        command: ["/bin/sh", "-c", "echo ENV NAME: $(ENVNAME) LOGIN: $(LOGIN) PASSWORD: $(PWD)"]
+        command: ["/bin/sh", "-c", "echo ENV NAME: $(ENVNAME) LOGIN: $(APPLOGIN) PASSWORD: $(APPPWD)"]
         ports:
         - containerPort: 80
         env:
@@ -25,12 +25,12 @@ spec:
             configMapKeyRef:
               name: dev-env
               key: envname
-        - name: LOGIN
+        - name: APPLOGIN
           valueFrom:
             secretKeyRef:
               name: mysecret
               key: username
-        - name: PWD
+        - name: APPPWD
           valueFrom:
             secretKeyRef:
               name: mysecret
