@@ -17,6 +17,8 @@ spec:
       - name: test-container
         image: aranaivo/myphpapp
         command: ["/bin/sh", "-c", "echo ENV NAME: $(ENVNAME) LOGIN: $(LOGIN) PASSWORD: $(PWD)"]
+        ports:
+        - containerPort: 80
         env:
         - name: ENVNAME
           valueFrom:
